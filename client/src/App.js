@@ -1,33 +1,44 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+
+
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
+import ProductScreen from './pages/ProductScreen';
+import HomeScreen from './pages/HomeScreen';
+import Cart from './pages/Cart';
+import SignIn from './pages/SignIn';
 import data from './data';
-import Product from './components/Product';
+
 
 function App() {
+
   return (
-    <div className="grid-container">
-      <header className="row">
-        <div>
-          <a className="brand" href="/">
-            amazona
-          </a>
-        </div>
-        <div>
-          <a href="/cart">Cart</a>
-          <a href="/signin">Sign In</a>
-        </div>
-      </header>
-      <main>
-        <div>
-          <div className="row center">
-            {data.products.map((product) => (
-              <Product key={product._id} product={product}/>
-            ))}
-          </div>
-        </div>
-      </main>
-      <footer className="row center">All right reserved</footer>
-    </div>
-  );
+      <Router>
+        <Navigation />
+          <Switch>
+          <Route exact path="/">
+            <HomeScreen />
+          </Route>
+          <Route path="/cart">
+            <Cart />
+          </Route>
+          <Route path="/signin">
+            <SignIn />
+          </Route>
+          <Route path="/product/:id">
+            <ProductScreen data={data}/>
+          </Route>
+
+        </Switch>
+        <Footer />
+      </Router>
+
+    );
 }
 
 export default App;
