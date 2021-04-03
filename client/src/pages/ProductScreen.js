@@ -5,7 +5,7 @@ import Rating from '../components/Rating';
 
 
 
-export default function ProductScreen({data}) {
+export default function ProductScreen({products}) {
 
   const { id } = useParams();
 
@@ -15,7 +15,7 @@ export default function ProductScreen({data}) {
       <Link to="/">Back to result</Link>
     </div>
     <div>
-      {data.products.filter(product => 
+      {products.filter(product => 
         product._id === id).map((product, index) => (
           
           

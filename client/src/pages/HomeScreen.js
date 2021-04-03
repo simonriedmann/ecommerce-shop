@@ -1,15 +1,14 @@
 import React from 'react';
-import data from '../data';
 import Product from '../components/Product';
 import styled from 'styled-components';
 
 
 
-export default function HomeScreen(){
+export default function HomeScreen({ products }){
     return (
         <div>
             <Main>
-              {data.products.map((product) => (
+              {products.map((product) => (
                 <Product key={product._id} product={product} />
               ))}
             </Main>
