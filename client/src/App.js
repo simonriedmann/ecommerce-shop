@@ -18,7 +18,8 @@ import SignIn from './pages/SignIn';
 function App() {
   const apiServerURL = '/api';
 
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = ([]);
 
   useEffect(() => {
     fetch(apiServerURL + '/products')

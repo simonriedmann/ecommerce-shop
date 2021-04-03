@@ -40,6 +40,11 @@ p {
     font-size: 2rem;
 }
 
+img {
+    max-width: 29rem;
+    width: 100%;
+}
+
 `
 
 const CardDescription = styled.div`
