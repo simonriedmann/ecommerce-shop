@@ -39,6 +39,10 @@ const NavigationBox = styled.nav`
       color: white;
       padding: 1rem;
     }
+
+    a:hover {
+        color: #ff8000;
+    }
     
     p {
       padding: 0;

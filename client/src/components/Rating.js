@@ -1,8 +1,8 @@
-
+import styled from 'styled-components'
 
 export default function Rating({rating, numReviews}){
     return (
-        <div className="rating">
+        <RatingBox>
             <span>
                 <i className={
                     rating >=1
@@ -51,6 +51,17 @@ export default function Rating({rating, numReviews}){
             <span>
                 {numReviews + ' reviews'}
             </span>
-        </div>
+        </RatingBox>
     )
 }
+
+const RatingBox = styled.div`
+    span {
+        color: #f0c040;
+        margin: 0.1rem;
+    }
+    span:last-child {
+        color: #404040;
+  }
+`
+
