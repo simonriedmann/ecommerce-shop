@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,17 +12,27 @@ import ProductScreen from './pages/ProductScreen';
 import HomeScreen from './pages/HomeScreen';
 import Cart from './pages/Cart';
 import SignIn from './pages/SignIn';
-import data from './data';
+
 
 
 function App() {
+  const apiServerURL = '/api';
+
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    fetch(apiServerURL + '/products')
+      .then((result) => result.json())
+      .then((products) => setProducts(products))
+      .catch((error) => console.error(error.message));
+  }, []);
 
   return (
       <Router>
         <Navigation />
           <Switch>
           <Route exact path="/">
-            <HomeScreen />
+            <HomeScreen products={products}/>
           </Route>
           <Route path="/cart">
             <Cart />
@@ -31,7 +41,7 @@ function App() {
             <SignIn />
           </Route>
           <Route path="/product/:id">
-            <ProductScreen data={data}/>
+            <ProductScreen products={products}/>
           </Route>
 
         </Switch>

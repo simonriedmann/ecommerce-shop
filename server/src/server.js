@@ -1,16 +1,30 @@
 import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import productRoutes from './routes/products.routes.js';
 
-const app = express();
 
-app.get('/', (req, res) => {
-    res.send('Server is ready.')
+const result = dotenv.config();
+const server = express();
+server.use(cors());
+server.use(express.json());
+const DB_NAME = process.env.DB_NAME || 'ecommerce-shop';
+
+const connectionString = `mongodb://localhost:27017/${DB_NAME}`;
+mongoose.connect(connectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 
-app.get('/api/products', (req, res) => {
-    res.send(data)
-}
-)
+server.get('/', (req, res) =>
+  res.json({ status: 'Server is up and running.' })
+);
 
-app.listen(4000, () => {
-    console.log(`Example app listening at http://localhost:4000`)
-  });
+server.use('/api', [
+  productRoutes,
+]);
+
+const port = 4000;
+server.listen(port, () => console.log(`Server listens on port ${port}.`));
