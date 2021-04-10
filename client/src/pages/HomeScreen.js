@@ -1,5 +1,5 @@
 import React from 'react';
-import Product from '../components/Product';
+import ProductCard from '../components/ProductCard';
 import styled from 'styled-components';
 
 
@@ -9,7 +9,7 @@ export default function HomeScreen({ products }){
         <div>
             <Main>
               {products.map((product) => (
-                <Product key={product._id} product={product} />
+                <ProductCard key={product._id} product={product} />
               ))}
             </Main>
         </div> 

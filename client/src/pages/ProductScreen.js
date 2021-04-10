@@ -2,10 +2,10 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Rating from '../components/Rating';
+import CartButton from '../components/CartButton';
 
 
-
-export default function ProductScreen({products}) {
+export default function ProductScreen({products, addToCart}) {
 
   const { id } = useParams();
 
@@ -34,17 +34,25 @@ export default function ProductScreen({products}) {
               <p>Description:</p>
               <p>{product.description}</p>
               <p>Images:</p>
+              <SmallPicture
+                  src={product.image}
+                  alt={product.name}
+              />
+
             </div>
 
             <SellerBox>
               <p>Seller</p>
-              <p>Price: {product.price}</p>
-              <p>Status:</p>
-              <div>
-              {product.countInStock > 0 ? (<p>Available </p>) : (<p>Not available</p>)}
-              </div>
+              <TextBox>
+                <p>Price:</p> 
+                <p>{product.price}€</p>
+              </TextBox>
+              <TextBox>
+                <p>Status:</p>
+                {product.countInStock > 0 ? (<Available>Available </Available>) : (<NotAvailable>Not available</NotAvailable>)}
+              </TextBox>
               
-              <button>Add to Cart</button>
+              <CartButton  addToCart={addToCart} product={product} />
             </SellerBox>
             
           </ProductBox>
@@ -63,18 +71,52 @@ const ProductBox = styled.div`
   width: 100%;
 `
 
-const SellerBox = styled.form`
+const SellerBox = styled.div`
   border: 1px solid black;
   border-radius: 5px;
+  padding: 1rem;
+  background-color: lightgrey;
+  height: 25rem;
+  width: 20rem; 
+  margin: 2rem;
+  `
 
-  button {
-    width: 100%;
-    background-color: #f8f8f8;
+
+const TextBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0rem;
+
+  p{
+    margin: 0;
+    padding: 0rem;
+    padding-top: 0.5rem
   }
-  
 
+  p:last-child{
+    padding-bottom: 0.5rem;
+  }
 
 `
+
+const SmallPicture = styled.img`
+max-width: 5rem;
+width: 100%;
+border: 1px solid black;
+`
+
+const Available = styled.p`
+  color: green;
+`
+
+const NotAvailable = styled.p`
+  color: red;
+`
+
+
+
 
 
 

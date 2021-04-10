@@ -6,7 +6,7 @@ export default function Navigation(){
     return (
           <NavigationBox>
                 <NavLink exact to="/">
-                  <h1>Amazona</h1>
+                  <h1>AMAZONA</h1>
                 </NavLink>
 
                 <NavLink to="/cart">
