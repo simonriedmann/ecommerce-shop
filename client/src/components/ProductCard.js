@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 
-export default function Product({ product }){
+export default function ProductCard({ product }){
 
     return (
     
